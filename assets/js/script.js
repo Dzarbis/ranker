@@ -11,12 +11,14 @@ var main = function() {
     .then(function(response) {
         console.log(response);
     
-
+    
     var ratingLocation = document.querySelector("#landing-spot");
 
     var rating = document.createElement("li");
     var ratingPull = response.imdbRating;
-    rating.textContent = search + " - Rating: " + ratingPull;    
+    rating.textContent = search + " - Rating: " + ratingPull;
+    rating.setAttribute("id", "ranked-item");
+    rating.setAttribute("draggable", "true");
     ratingLocation.appendChild(rating);
     })
 };
