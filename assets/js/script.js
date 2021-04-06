@@ -4,7 +4,6 @@ var main = function() {
     var search = searchTerm.value.trim();
     var omdbApi = "http://www.omdbapi.com/?apikey=ace027ad&t=" + search;
 
-    console.log(search);
     fetch(omdbApi).then(function(response) {
         return response.json();
     })
@@ -22,3 +21,19 @@ var main = function() {
     ratingLocation.appendChild(rating);
     })
 };
+
+var save = function() {
+    var title = "";
+    var listed = [];
+    var contents = document.querySelector("#landing-spot").children;
+    console.log(contents[0].textContent);
+    for (var i = 0; i < contents.length; i++) {
+        listed.push(contents[i].textContent);
+    }
+    
+    while (title === "" || title === null) {
+        title = prompt("What would you like to title this list?");
+    }
+
+    localStorage.setItem(title, JSON.stringify(listed));
+}
