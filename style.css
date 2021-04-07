@@ -1,0 +1,34 @@
+.rank-heading {
+    background-color: grey;
+    color: white;
+    font-family: Geneva;
+    font-weight: bold;
+    font-size: 20pt;
+    padding: 25px 50px 25px 50px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+}
+
+main {
+    width: 300px;
+    min-height: 40px;
+    border: 1px solid black;
+    margin: auto;
+    text-align: center;
+    font-family: verdana;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: grey;
+    color: white;
+}
+
+section {
+    border: 1px solid #eee;
+    width: 300px;
+    min-height: 40px;
+    margin: auto;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+}
