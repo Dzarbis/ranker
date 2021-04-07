@@ -25,6 +25,7 @@ var main = function() {
 var save = function() {
     var title = "";
     var listed = [];
+    var list = [];
     var contents = document.querySelector("#landing-spot").children;
     console.log(contents[0].textContent);
     for (var i = 0; i < contents.length; i++) {
@@ -35,5 +36,14 @@ var save = function() {
         title = prompt("What would you like to title this list?");
     }
 
-    localStorage.setItem(title, JSON.stringify(listed));
+    localStorage.setItem("ranker", JSON.stringify(listed));
 }
+
+var load = function() {
+    for (var i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        console.log('${key}: ${localStorage.getItem(key)}')
+    }
+}
+
+load();
