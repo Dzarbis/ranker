@@ -10,12 +10,14 @@
     <title>Rankotron 5000</title>
 </head>
 <body>
-    <input type="text" id="title-search" placeholder="Search Title Here!" />
-    <button onclick="main()">Search</button>
-    <button onclick="newList()">New List</button>
-    <select name="list-load" class="browser-default">
-        <option value="" disabled selected>Select a saved list</option>
-    </select>
+    <header>
+        <input type="text" id="title-search" placeholder="Search Title Here!" />
+        <button onclick="main()">Search</button>
+        <button onclick="newList()">New List</button>
+        <select name="list-load" class="browser-default">
+            <option value="" disabled selected>Select a saved list</option>
+        </select>
+    </header>
     
     <div>
         <ul id="landing-spot">
@@ -24,7 +26,8 @@
     </div>
     <div id="modal" class="modal">
         <div class="modal-content">
-          <h4>Title Your List</h4>
+          <h4 class="rank-heading">Rankotron 5000</h4>
+          <h5>Title Your List</h5>
           <input type="text" id="title-set" placeholder="Title" />
         </div>
         <div class="modal-footer">
