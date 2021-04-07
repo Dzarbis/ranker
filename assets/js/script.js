@@ -1,7 +1,7 @@
 var main = function() {
     var searchTerm = document.querySelector("#title-search");
     var search = searchTerm.value.trim();
-    var omdbApi = "http://www.omdbapi.com/?apikey=ace027ad&t=" + search;
+    var omdbApi = "https://www.omdbapi.com/?apikey=ace027ad&t=" + search;
 
     fetch(omdbApi).then(function(response) {
         return response.json();
