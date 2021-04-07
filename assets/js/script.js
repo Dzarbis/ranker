@@ -110,5 +110,10 @@ var deleteListItem = function() {
 }
 
 load();
+$("#landing-spot").sortable({
+    deactivate: function(){
+        save();
+    }
+});
 document.querySelector('[name="list-load"]').addEventListener("change", listSelect);
 document.querySelector("#modal-save").addEventListener("click", saveNewList);
