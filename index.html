@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Rankotron 5000</title>
 </head>
@@ -12,7 +13,7 @@
     <input type="text" id="title-search" placeholder="Search Title Here!" />
     <button onclick="main()">Search</button>
     <button onclick="newList()">New List</button>
-    <select name="list-load">
+    <select name="list-load" class="browser-default">
         <option value="" disabled selected>Select a saved list</option>
     </select>
     
@@ -27,7 +28,7 @@
           <input type="text" id="title-set" placeholder="Title" />
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="modal-save">Save</a>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

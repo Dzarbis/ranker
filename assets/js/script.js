@@ -1,4 +1,3 @@
-
 var main = function() {
     var searchTerm = document.querySelector("#title-search");
     var search = searchTerm.value.trim();
@@ -10,18 +9,28 @@ var main = function() {
     .then(function(response) {
         console.log(response);
     
-        var ratingLocation = document.querySelector("#landing-spot");
-
-        var rating = document.createElement("li");
-        var ratingPull = response.imdbRating;
-        rating.textContent = search + " - Rating: " + ratingPull;
-        rating.setAttribute("id", "ranked-item");
-        rating.setAttribute("draggable", "true");
-        ratingLocation.appendChild(rating);
+        addRatingItem(search + " - Rating: " + response.imdbRating);
         searchTerm.value = "";
         save();
     })
 };
+
+var addRatingItem = function(ratingString) {
+    var ratingLocation = document.querySelector("#landing-spot");
+    var ratingWrapper = document.createElement("li");
+    var rating = document.createElement("span");
+    //var ratingPull = response.imdbRating;
+    rating.textContent = ratingString;
+    rating.setAttribute("class", "ranked-item");
+    rating.setAttribute("draggable", "true");
+    ratingWrapper.appendChild(rating);
+    var trash = document.createElement("i");
+    trash.setAttribute("class", "material-icons");
+    trash.textContent = "delete";
+    trash.addEventListener("click", deleteListItem);
+    ratingWrapper.appendChild(trash);
+    ratingLocation.appendChild(ratingWrapper);
+}
 
 var openModal = function() {
     var elem = document.querySelector('#modal');
@@ -48,8 +57,7 @@ var save = function() {
     loadList[title] = [];
 
     for (var i = 0; i < contents.length; i++) {
-        loadList[title].push(contents[i].textContent);
-        console.log(contents[i].textContent);
+        loadList[title].push($(contents[i]).children(".ranked-item").text());
     }
 
     localStorage.setItem("ranker", JSON.stringify(loadList));
@@ -63,10 +71,15 @@ var load = function() {
         return;
     }
     
-    for (var i = 0; i < loadList.length; i++) {
+    var titleList = document.querySelector('[name="list-load"]');
+
+    while (titleList.children.length > 1) {
+        titleList.children[1].remove();
+    }
+    for (var name in loadList) {
         var option = document.createElement("option");
-        option.textContent = loadList[i].name;
-        document.querySelector('[name="list-load"]').appendChild(option);
+        option.textContent = name;
+        titleList.appendChild(option);
     }
 };
 
@@ -78,20 +91,24 @@ var listSelect = function() {
     if (!loadList){
         return;
     }
-    for (var i = 0; i < loadList.length; i++) {
-        var loadListItem = loadList[i];
-        if (this.value === loadListItem.name) {
-            var loadListValues = loadListItem.value;
-            for (var ii = 0; ii < loadListValues.length; ii++) {
+    $("#title-set").val(this.value);
+    var loadListValues = loadList[this.value]
+    for (var i = 0; i < loadListValues.length; i++) {
 
-                var rating = document.createElement("li");
-                rating.textContent = loadListValues[ii];
-                rating.setAttribute("id", "ranked-item");
-                rating.setAttribute("draggable", "true");
-                ratingLocation.appendChild(rating);
-            }
-        }
+        addRatingItem(loadListValues[i]);
     }
 }
+
+var saveNewList = function() {
+    save();
+    load();
+}
+
+var deleteListItem = function() {
+    this.parentElement.remove();
+    save();
+}
+
 load();
 document.querySelector('[name="list-load"]').addEventListener("change", listSelect);
+document.querySelector("#modal-save").addEventListener("click", saveNewList);
