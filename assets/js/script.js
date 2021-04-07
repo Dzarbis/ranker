@@ -10,43 +10,47 @@ var main = function() {
     .then(function(response) {
         console.log(response);
     
-    
-    var ratingLocation = document.querySelector("#landing-spot");
+        var ratingLocation = document.querySelector("#landing-spot");
 
-    var rating = document.createElement("li");
-    var ratingPull = response.imdbRating;
-    rating.textContent = search + " - Rating: " + ratingPull;
-    rating.setAttribute("id", "ranked-item");
-    rating.setAttribute("draggable", "true");
-    ratingLocation.appendChild(rating);
+        var rating = document.createElement("li");
+        var ratingPull = response.imdbRating;
+        rating.textContent = search + " - Rating: " + ratingPull;
+        rating.setAttribute("id", "ranked-item");
+        rating.setAttribute("draggable", "true");
+        ratingLocation.appendChild(rating);
+        searchTerm.value = "";
+        save();
     })
 };
 
+var openModal = function() {
+    var elem = document.querySelector('#modal');
+        $("#title-set").val("");
+        var modal = M.Modal.init(elem);
+        modal.open();
+}
+
+var newList = function() {
+    openModal();
+    $("#landing-spot").empty();
+}
+
 var save = function() {
     var loadList = localStorage.getItem("ranker");
+    var title = document.querySelector("#title-set").value;
+    var contents = document.querySelector("#landing-spot").children;
     loadList = JSON.parse(loadList);
 
     if (!loadList){
-        loadList = [];
+        loadList = {};
     }
-    var title = "";
-    var listed = [];
 
-    var contents = document.querySelector("#landing-spot").children;
+    loadList[title] = [];
 
     for (var i = 0; i < contents.length; i++) {
-        listed.push(contents[i].textContent);
+        loadList[title].push(contents[i].textContent);
         console.log(contents[i].textContent);
     }
-    
-    while (title === "" || title === null) {
-        title = prompt("What would you like to title this list?");
-    }
-    var listObj = {
-        name: title,
-        value: listed
-    };
-    loadList.push(listObj);
 
     localStorage.setItem("ranker", JSON.stringify(loadList));
 }
@@ -55,7 +59,7 @@ var load = function() {
     var loadList = localStorage.getItem("ranker");
     loadList = JSON.parse(loadList);
     if (!loadList) {
-        $('#modal').foundation('open');
+        openModal();
         return;
     }
     

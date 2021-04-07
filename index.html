@@ -9,9 +9,9 @@
     <title>Rankotron 5000</title>
 </head>
 <body>
-    <input type="text" id="title-search" value="Search Title Here!" />
+    <input type="text" id="title-search" placeholder="Search Title Here!" />
     <button onclick="main()">Search</button>
-    <button onclick="save()">Save List</button>
+    <button onclick="newList()">New List</button>
     <select name="list-load">
         <option value="" disabled selected>Select a saved list</option>
     </select>
@@ -21,11 +21,14 @@
 
         </ul>
     </div>
-    <div id="modal" class="reveal" data-reveal>
-        <h1>List Title</h1>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+          <h4>Title Your List</h4>
+          <input type="text" id="title-set" placeholder="Title" />
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
