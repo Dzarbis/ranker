@@ -23,25 +23,71 @@ var main = function() {
 };
 
 var save = function() {
+    var loadList = localStorage.getItem("ranker");
+    loadList = JSON.parse(loadList);
+
+    if (!loadList){
+        loadList = [];
+    }
     var title = "";
     var listed = [];
-    var listObj = {
-        name: title,
-        value: listed
-    };
+
     var contents = document.querySelector("#landing-spot").children;
-    console.log(contents[0].textContent);
+
     for (var i = 0; i < contents.length; i++) {
         listed.push(contents[i].textContent);
+        console.log(contents[i].textContent);
     }
     
     while (title === "" || title === null) {
         title = prompt("What would you like to title this list?");
     }
+    var listObj = {
+        name: title,
+        value: listed
+    };
+    loadList.push(listObj);
 
-    localStorage.setItem("ranker", JSON.stringify(listObj));
+    localStorage.setItem("ranker", JSON.stringify(loadList));
 }
 
 var load = function() {
+    var loadList = localStorage.getItem("ranker");
+    loadList = JSON.parse(loadList);
+    if (!loadList) {
+        $('#modal').foundation('open');
+        return;
+    }
     
+    for (var i = 0; i < loadList.length; i++) {
+        var option = document.createElement("option");
+        option.textContent = loadList[i].name;
+        document.querySelector('[name="list-load"]').appendChild(option);
+    }
+};
+
+var listSelect = function() {
+    var ratingLocation = document.querySelector("#landing-spot");
+    ratingLocation.innerHTML = "";
+    var loadList = localStorage.getItem("ranker");
+    loadList = JSON.parse(loadList);
+    if (!loadList){
+        return;
+    }
+    for (var i = 0; i < loadList.length; i++) {
+        var loadListItem = loadList[i];
+        if (this.value === loadListItem.name) {
+            var loadListValues = loadListItem.value;
+            for (var ii = 0; ii < loadListValues.length; ii++) {
+
+                var rating = document.createElement("li");
+                rating.textContent = loadListValues[ii];
+                rating.setAttribute("id", "ranked-item");
+                rating.setAttribute("draggable", "true");
+                ratingLocation.appendChild(rating);
+            }
+        }
+    }
 }
+load();
+document.querySelector('[name="list-load"]').addEventListener("change", listSelect);
