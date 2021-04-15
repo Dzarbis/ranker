@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="../TeamProject/assets/style.css">
+
     <title>Rankotron 5000</title>
 </head>
 <body>
@@ -18,7 +21,44 @@
             <option value="" disabled selected>Select a saved list</option>
         </select>
     </header>
+    <!-- Container Section for first vertical column for Search Area-->
+    <div class="columns is-vcentered">
+        <div class="column is-4">
+          <p class="bd-notification is-success"></p>
+          <form class="box">
+              <p>"Search For <strong>Your</strong> Favorite Movies by Title"</p>
+            <img src="../TeamProject/assets/movie.png"> 
+            <div class="field">
+              <div class="control">
+                  <p>Press Search to Retrieve Movie Details"</p>
+                <input class="input" type="text" placeholder="">
+              </div>
+            </div>
+            <button class="button is-link">Search</button>
+          </form>
+        </div>
     
+        <!-- Second Section, Container used to hold all the drag and drop movies selected-->
+        <div class="container is-fluid">
+            <div class="notification is-secondary">
+              <strong>DRAG & </strong> <strong>DROP </strong>Your Top '10' Movie Picks here
+              <br><br>
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+              <input class="column is-full" type="text">
+            </div>
+          </div>
+      </div>
+
+     
+
     <div>
         <ul id="landing-spot">
 
