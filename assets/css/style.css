@@ -32,3 +32,14 @@ section {
     font-family: 'Trebuchet MS';
     font-size: 20px;
 }
+
+li {
+    border: solid black 2px;
+    background-color: grey;
+}
+
+body {
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
